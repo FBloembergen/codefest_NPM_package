@@ -57,6 +57,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.awesomeFunction = void 0;
 var fs = __importStar(require("fs"));
+/**
+ * Yes, it will be awesome.
+ */
 exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {

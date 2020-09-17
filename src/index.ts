@@ -1,5 +1,8 @@
 import * as fs from 'fs';
 
+/**
+ * Yes, it will be awesome.
+ */
 export const awesomeFunction = async () => {
     console.log(`Processing request...`);
     fs.copyFileSync('./README.md', './README_2.md');
