@@ -1,1 +1,3 @@
-export function awesomeFunction(): void;
+declare namespace codefestNpmPackage {
+    function awesomeFunction(): void;
+}
