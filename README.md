@@ -1,2 +1,1 @@
-# codefest_NPM_package
-codefest_NPM_package
+Just creating a readme file

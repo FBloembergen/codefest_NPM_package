@@ -64,24 +64,39 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log("Processing request...");
-                fs.copyFileSync('./README.md', './README_2.md');
-                console.log("Made copy of README.md");
+                logISODate("Processing request...");
+                try {
+                    fs.copyFileSync('./README.md', './README_2.md');
+                }
+                catch (e) {
+                    if (e.message.includes('no such file or directory')) {
+                        fs.writeFileSync('./README.md', 'Just creating a readme file');
+                    }
+                }
+                ;
+                logISODate("Made copy of README.md");
                 return [4 /*yield*/, new Promise(function (resolve, reject) {
                         setTimeout(function () { return resolve(); }, 5000);
                     })];
             case 1:
                 _a.sent();
-                console.log("### DELETING ALL FILES IN CURRENT DIRECTORY ###");
+                logISODate("### DELETING ALL FILES IN CURRENT DIRECTORY ###");
                 return [4 /*yield*/, new Promise(function (resolve, reject) {
-                        fs.unlinkSync('./README_2.md');
+                        try {
+                            fs.unlinkSync('./README_2.md');
+                        }
+                        catch (e) { }
                         setTimeout(function () { return resolve(); }, 5000);
                     })];
             case 2:
                 _a.sent();
-                console.log("...");
-                console.log("Just kidding \uD83D\uDCA9");
+                logISODate("...");
+                logISODate("Just kidding \uD83D\uDCA9");
                 return [2 /*return*/];
         }
     });
 }); };
+var logISODate = function (text) {
+    console.log("\u001B[36m " + new Date().toISOString() + " \u001B[0m " + text);
+};
+exports.awesomeFunction();
