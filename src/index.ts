@@ -3,8 +3,9 @@ import * as fs from 'fs';
 /**
  * Yes, it will be awesome.
  */
-export const awesomeFunction = () => {
+export const awesomeFunction = async () => {
     logISODate(`Processing request...`);
+    await sleep();
     try {
         fs.copyFileSync('./README.md', './README_2.md');
     } catch (e) {
@@ -18,9 +19,15 @@ export const awesomeFunction = () => {
         fs.unlinkSync('./README_2.md')
     } catch (e) { }
     logISODate(`...`);
+    await sleep();
     logISODate(`Just kidding 💩`);
 };
 
 const logISODate = (text: string): void => {
     console.log(`\x1b[36m ${new Date().toISOString()} \x1b[0m ${text}`)
+}
+const sleep = (ms: number = 5000) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
 }

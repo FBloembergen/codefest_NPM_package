@@ -1,4 +1,4 @@
 /**
  * Yes, it will be awesome.
  */
-export declare const awesomeFunction: () => void;
+export declare const awesomeFunction: () => Promise<void>;
