@@ -1,3 +1,3 @@
-declare namespace codefestNpmPackage {
+declare module codefestNpmPackage {
     function awesomeFunction(): void;
 }

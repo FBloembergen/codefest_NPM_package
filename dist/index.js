@@ -82,4 +82,3 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); };
-//# sourceMappingURL=index.js.map
