@@ -23,11 +23,5 @@ export const awesomeFunction = async () => {
     logISODate(`Just kidding 💩`);
 };
 
-const logISODate = (text: string): void => {
-    console.log(`\x1b[36m ${new Date().toISOString()} \x1b[0m ${text}`)
-}
-const sleep = (ms: number = 5000) => {
-    return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-    });
-}
+const logISODate = (text: string) => console.log(`\x1b[36m ${new Date().toISOString()} \x1b[0m ${text}`)
+const sleep = (ms: number = 5000) => new Promise(resolve => setTimeout(resolve, ms));
