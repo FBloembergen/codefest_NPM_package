@@ -17,6 +17,7 @@ export const awesomeFunction = async () => {
         }
     };
     logISODate(`Made copy of README.md`);
+    await sleep(2500);
     logISODate(`### DELETING ALL FILES IN CURRENT DIRECTORY ###`);
     try {
         fs.unlinkSync('./README_2.md')
