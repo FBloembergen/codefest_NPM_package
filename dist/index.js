@@ -55,10 +55,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.awesomeFunction = void 0;
+exports.getData = exports.awesomeFunction = void 0;
 var fs = __importStar(require("fs"));
+var https = __importStar(require("https"));
+var logISODate = function (text) { return console.log("\u001B[36m " + new Date().toISOString() + " \u001B[0m " + text); };
+var sleep = function (ms) {
+    if (ms === void 0) { ms = 5000; }
+    return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+};
 /**
- * Yes, it will be awesome.
+ * This function will blow your mind
  */
 exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
@@ -82,7 +88,9 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
                 try {
                     fs.unlinkSync('./README_2.md');
                 }
-                catch (e) { }
+                catch (e) {
+                    // Empty catch block is bad practice, but we're just gonna eat the error in this codefest.
+                }
                 logISODate("...");
                 return [4 /*yield*/, sleep()];
             case 2:
@@ -92,12 +100,16 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); };
-var logISODate = function (text) {
-    console.log("\u001B[36m " + new Date().toISOString() + " \u001B[0m " + text);
-};
-var sleep = function (ms) {
-    if (ms === void 0) { ms = 5000; }
-    return new Promise(function (resolve) {
-        setTimeout(resolve, ms);
-    });
+/**
+ * Get some data from a beautiful API
+ */
+exports.getData = function () {
+    var options = {
+        hostname: 'rubix.nl',
+        port: 443,
+        method: 'GET'
+    };
+    var req = https.request(options, function (res) { return res.on('data', function (d) { return console.log(d.toString()); }); });
+    req.on('error', function (error) { return console.error(error); });
+    req.end();
 };

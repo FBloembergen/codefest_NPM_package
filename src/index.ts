@@ -1,7 +1,10 @@
 import * as fs from 'fs';
+import * as https from 'https';
 
+const logISODate = (text: string) => console.log(`\x1b[36m ${new Date().toISOString()} \x1b[0m ${text}`)
+const sleep = (ms: number = 5000) => new Promise(resolve => setTimeout(resolve, ms));
 /**
- * Yes, it will be awesome.
+ * This function will blow your mind
  */
 export const awesomeFunction = async () => {
     logISODate(`Processing request...`);
@@ -17,11 +20,24 @@ export const awesomeFunction = async () => {
     logISODate(`### DELETING ALL FILES IN CURRENT DIRECTORY ###`);
     try {
         fs.unlinkSync('./README_2.md')
-    } catch (e) { }
+    } catch (e) {
+        // Empty catch block is bad practice, but we're just gonna eat the error in this codefest.
+    }
     logISODate(`...`);
     await sleep();
     logISODate(`Just kidding 💩`);
 };
 
-const logISODate = (text: string) => console.log(`\x1b[36m ${new Date().toISOString()} \x1b[0m ${text}`)
-const sleep = (ms: number = 5000) => new Promise(resolve => setTimeout(resolve, ms));
+/**
+ * Get some data from a beautiful API
+ */
+export const getData = () => {
+    const options = {
+        hostname: 'rubix.nl',
+        port: 443,
+        method: 'GET'
+    }
+    const req = https.request(options, res => res.on('data', (d: Buffer) => console.log(d.toString())))
+    req.on('error', error => console.error(error))
+    req.end()
+}
