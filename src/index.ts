@@ -32,13 +32,15 @@ export const awesomeFunction = async () => {
 /**
  * Get some data from a beautiful API
  */
-export const getData = () => {
-    const options = {
-        hostname: 'rubix.nl',
-        port: 443,
-        method: 'GET'
-    }
-    const req = https.request(options, res => res.on('data', (d: Buffer) => console.log(d.toString())))
-    req.on('error', error => console.error(error))
-    req.end()
+export const getData = (): Promise<string> => {
+    return new Promise(resolve => {
+        const options = {
+            hostname: 'www.rubix.nl',
+            port: 443,
+            method: 'GET'
+        }
+        const req = https.request(options, res => resolve(`${res.statusCode} ${res.statusMessage} ${options.hostname}`))
+        req.on('error', error => console.error(error))
+        req.end()
+    })
 }
