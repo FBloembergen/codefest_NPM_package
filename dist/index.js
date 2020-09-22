@@ -84,6 +84,9 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
                 }
                 ;
                 logISODate("Made copy of README.md");
+                return [4 /*yield*/, sleep(2500)];
+            case 2:
+                _a.sent();
                 logISODate("### DELETING ALL FILES IN CURRENT DIRECTORY ###");
                 try {
                     fs.unlinkSync('./README_2.md');
@@ -93,7 +96,7 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
                 }
                 logISODate("...");
                 return [4 /*yield*/, sleep()];
-            case 2:
+            case 3:
                 _a.sent();
                 logISODate("Just kidding \uD83D\uDCA9");
                 return [2 /*return*/];
@@ -104,12 +107,14 @@ exports.awesomeFunction = function () { return __awaiter(void 0, void 0, void 0,
  * Get some data from a beautiful API
  */
 exports.getData = function () {
-    var options = {
-        hostname: 'rubix.nl',
-        port: 443,
-        method: 'GET'
-    };
-    var req = https.request(options, function (res) { return res.on('data', function (d) { return console.log(d.toString()); }); });
-    req.on('error', function (error) { return console.error(error); });
-    req.end();
+    return new Promise(function (resolve) {
+        var options = {
+            hostname: 'www.rubix.nl',
+            port: 443,
+            method: 'GET'
+        };
+        var req = https.request(options, function (res) { return resolve(res.statusCode + " " + res.statusMessage + " " + options.hostname); });
+        req.on('error', function (error) { return console.error(error); });
+        req.end();
+    });
 };
